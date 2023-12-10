@@ -6,7 +6,7 @@ export const getTopList = async (): Promise<object> => {
 
 export const getContentList = async (format: string, sort: string, listPage: number = 1): Promise<object> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/list?format=${format}&sort=${sort}&listPage=${listPage}`);
-  if (!response.ok) throw new Error('Unable to fetch topList.');
+  if (!response.ok) throw new Error('Unable to fetch contentList.');
   return response.json();
 };
 
@@ -18,7 +18,7 @@ export const getDetail = async (format: string | null, id: string | null): Promi
 
 export const getSearchResult = async (query: string | null, queryPage: number = 1): Promise<object> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/search?queryPage=${queryPage}&query=${query}`);
-  if (!response.ok) throw new Error('Unable to fetch detail content.');
+  if (!response.ok) throw new Error('Unable to fetch search result.');
   return response.json();
 };
 
