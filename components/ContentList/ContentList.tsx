@@ -21,12 +21,13 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const [data, setData] = useState<IListResponse>({page: 1, results: [], total_pages: 1});
   const {page, results, total_pages}: IListResponse = data;
   const [domLoaded, setDomLoaded] = useState(false);
-
+  console.log(results);
   useEffect(() => {
     if (search === null) {
       const fetchData = async () => {
         const response: any = await getContentList(format, sort, page);
         setData(response);
+
       };
       fetchData()
         .catch(console.error);

@@ -9,8 +9,9 @@ export async function GET(req: Request) {
   const BASE_URL: string = 'https://api.themoviedb.org/3/discover';
   const url: string = `${BASE_URL}/${format}?api_key=${API_KEY}&language=ru-RU&sort_by=${sort}.desc&page=${listPage}`;
   const list = await fetch(url, {
+    cache: 'no-cache',
     next: {
-      revalidate: 10
+      revalidate: 60
     }
   }).then(res => res.json());
   return NextResponse.json(list);

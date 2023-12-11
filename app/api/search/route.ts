@@ -9,8 +9,9 @@ export async function GET(req: Request) {
   const url: string = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=ru-RU&query=${query}&page=${queryPage}`;
 
   const searchResult = await fetch(url, {
+    cache: 'no-cache',
     next: {
-      revalidate: 10
+      revalidate: 60
     }
   }).then(res => res.json());
   return NextResponse.json(searchResult);
