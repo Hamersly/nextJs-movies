@@ -1,6 +1,6 @@
 import {TopList} from '@/components/TopList/TopList';
 
 
-export default async function Home() {
+export default function Home() {
   return <TopList/>;
 }

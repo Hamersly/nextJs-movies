@@ -10,7 +10,7 @@ export async function GET(req: Request) {
 
   const searchResult = await fetch(url, {
     next: {
-      revalidate: 60
+      revalidate: 10
     }
   }).then(res => res.json());
   return NextResponse.json(searchResult);

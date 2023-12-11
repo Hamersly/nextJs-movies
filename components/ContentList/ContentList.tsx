@@ -20,6 +20,7 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const [sort, setSort] = useState('popularity');
   const [data, setData] = useState<IListResponse>({page: 1, results: [], total_pages: 1});
   const {page, results, total_pages}: IListResponse = data;
+  const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
     if (search === null) {
@@ -37,6 +38,7 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
       fetchData()
         .catch(console.error);
     }
+    setDomLoaded(true);
   }, [format, page, sort, search]);
 
   const handleChange: IHandleChangeFunc = async (_event: object, page: number) => {
@@ -48,6 +50,7 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
     setSort(param);
   };
 
+  if(!domLoaded) return <Loader/>;
   return (
     <Box sx={contentBoxStyle}>
       {results && search === null ?

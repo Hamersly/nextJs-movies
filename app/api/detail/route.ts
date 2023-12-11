@@ -9,7 +9,7 @@ export async function GET(req: Request) {
   const url: string = `${BASE_URL}/${format}/${id}?api_key=${API_KEY}&language=ru-RU`;
   const detail = await fetch(url, {
     next: {
-      revalidate: 60
+      revalidate: 10
     }
   }).then(res => res.json());
   return NextResponse.json(detail);

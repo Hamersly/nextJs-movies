@@ -15,7 +15,7 @@ export async function generateMetadata({params: {slug}}: IProps): Promise<Metada
   };
 }
 
-export default async function Page({params: {slug}}: IProps) {
+export default function Page({params: {slug}}: IProps) {
   return (
     <>
       <ContentList

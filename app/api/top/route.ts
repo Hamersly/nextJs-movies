@@ -6,7 +6,7 @@ export async function GET() {
   const url: string = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=ru-RU&sort_by=popularity.desc`;
   const topList = await fetch(url, {
     next: {
-      revalidate: 60
+      revalidate: 10
     }
   }).then(res => res.json());
   return NextResponse.json(topList);
