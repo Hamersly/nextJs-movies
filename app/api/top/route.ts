@@ -7,7 +7,7 @@ export async function GET() {
   const topList = await fetch(url, {
     // cache: 'no-cache',
     next: {
-      revalidate: 60
+      revalidate: 60,
     }
   }).then(res => res.json());
   return NextResponse.json(topList);

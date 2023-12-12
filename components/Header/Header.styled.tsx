@@ -14,8 +14,15 @@ export const headerAppBarStyle = {
 
 export const headerToolbarStyle = {
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   backgroundColor: '#1240AB',
+};
+
+export const headerToolStyle = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
+  maxWidth: '800px'
 };
 
 // export const HeaderLink = styled(Link)`
