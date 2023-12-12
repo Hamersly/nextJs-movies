@@ -9,4 +9,11 @@ export const contentBoxStyle = {
   alignItems: 'center',
   justifyContent: 'center',
   width: '95%',
+};
+
+export const contentBoxPaginationStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'space-between',
+  height: '100%'
 }

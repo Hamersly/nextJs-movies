@@ -33,6 +33,7 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     first_air_date,
     popularity
   }: IContent = content;
+
   const handleClose = () => {
     setOpen(false);
   };

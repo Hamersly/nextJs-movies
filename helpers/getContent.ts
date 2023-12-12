@@ -1,20 +1,19 @@
+
 export const getTopList = async (): Promise<object> => {
-  console.log('getTopList START');
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_URL}/api/top`,
     {
       cache: 'no-cache',
-      mode: 'no-cors',
-      headers: {
-        // 'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': 'true',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT',
-        'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
-      }
+      // mode: 'no-cors',
+      // headers: {
+      //   // 'Content-Type': 'application/json',
+      //   'Access-Control-Allow-Credentials': 'true',
+      //   'Access-Control-Allow-Origin': '*',
+      //   'Access-Control-Allow-Methods': 'GET,DELETE,PATCH,POST,PUT',
+      //   'Access-Control-Allow-Headers': 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+      // }
     });
   if (!response.ok) throw new Error('Unable to fetch topList.');
-  console.log('getTopList' , response);
   return response.json();
 };
 

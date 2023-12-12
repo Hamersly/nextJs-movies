@@ -9,6 +9,7 @@ import {Loader} from '@/components/UI/Loader/Loader';
 export const TopList:FC = () => {
   const [results, setResults] = useState([]);
   const [domLoaded, setDomLoaded] = useState(false);
+  console.log(results);
 
   useEffect(() => {
     const fetchData = async () => {

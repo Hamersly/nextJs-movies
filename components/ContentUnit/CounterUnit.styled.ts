@@ -34,6 +34,6 @@ export const unitImageStile = {
 };
 
 export const unitPosterStile = {
-  height: '70%',
+  height: '80%',
   width: 'auto',
 };

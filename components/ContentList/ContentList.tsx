@@ -4,7 +4,11 @@ import {ContentUnit} from '../ContentUnit/ContentUnit';
 import {Box} from '@mui/material';
 import {IHandleChangeFunc, IListResponse} from '@/types/types';
 import {Loader} from '../UI/Loader/Loader';
-import {cLBoxStyle, contentBoxStyle} from '@/components/ContentList/ContentList.styled';
+import {
+  cLBoxStyle,
+  contentBoxPaginationStyle,
+  contentBoxStyle
+} from '@/components/ContentList/ContentList.styled';
 import {BasePagination} from '../BasePagination/BasePagination';
 import {getContentList, getSearchResult} from '@/helpers/getContent';
 import {SortedContent} from '../SortedContent/SortedContent';
@@ -54,32 +58,35 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   if(!domLoaded) return <Loader/>;
   return (
     <Box sx={contentBoxStyle}>
-      {results && search === null ?
+      {results.length && search === null ?
         <Box sx={cLBoxStyle}>
           <SortedContent sort={sorted}/>
         </Box>
         :
-        <></>
+        null
       }
-      {results &&
+      {results.length ?
         <Box sx={cLBoxStyle}>
           <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
         </Box>
+        :
+        null
       }
 
-      {results ?
+      {results.length ?
         results.map((result: any) =>
           <ContentUnit format={format} content={result} key={result.id}/>)
         :
         <Loader/>
       }
 
-      {results &&
+      {results.length ?
         <Box sx={cLBoxStyle}>
           <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
         </Box>
+        :
+        null
       }
-
       <Scroll/>
 
     </Box>

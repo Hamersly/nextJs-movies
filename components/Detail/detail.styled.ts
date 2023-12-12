@@ -33,6 +33,6 @@ export const detailImageStile = {
 };
 
 export const detailPosterStile = {
-  height: '70%',
-  width: 'auto',
+  height: 'auto',
+  width: '100%',
 };
