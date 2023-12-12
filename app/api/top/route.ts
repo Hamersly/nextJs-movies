@@ -5,7 +5,7 @@ export async function GET() {
   const BASE_URL: string = 'https://api.themoviedb.org/3';
   const url: string = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=ru-RU&sort_by=popularity.desc`;
   const topList = await fetch(url, {
-    cache: 'no-cache',
+    // cache: 'no-cache',
     next: {
       revalidate: 60
     }
