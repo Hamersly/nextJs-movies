@@ -16,4 +16,4 @@ export const contentBoxPaginationStyle = {
   flexDirection: 'column',
   alignItems: 'space-between',
   height: '100%'
-}
+};

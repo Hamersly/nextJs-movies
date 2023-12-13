@@ -1,5 +1,5 @@
 import {alpha, styled} from '@mui/material/styles';
-import InputBase from "@mui/material/InputBase";
+import InputBase from '@mui/material/InputBase';
 
 export const SearchTag = styled('div')(({theme}) => ({
   position: 'relative',

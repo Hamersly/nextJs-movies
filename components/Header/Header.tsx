@@ -11,7 +11,7 @@ export const Header = () => {
       <Title/>
       <AppBar sx={headerAppBarStyle} position="static">
         <Toolbar sx={headerToolbarStyle}>
-          <Box sx ={headerToolStyle}>
+          <Box sx={headerToolStyle}>
             <MenuEl/>
             <Box>
               <Search/>

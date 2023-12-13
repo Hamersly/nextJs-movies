@@ -1,12 +1,12 @@
 'use client';
 import {FC, useEffect, useState} from 'react';
 import {Box, Typography} from '@mui/material';
-import {topTypographyStyle, topContentStyle} from '../TopList/TopList.styled';
+import {topContentStyle, topTypographyStyle} from '../TopList/TopList.styled';
 import {ContentUnit} from '@/components/ContentUnit/ContentUnit';
 import {getTopList} from '@/helpers/getContent';
 import {Loader} from '@/components/UI/Loader/Loader';
 
-export const TopList:FC = () => {
+export const TopList: FC = () => {
   const [results, setResults] = useState([]);
   const [domLoaded, setDomLoaded] = useState(false);
 
@@ -21,7 +21,7 @@ export const TopList:FC = () => {
     setDomLoaded(true);
   }, []);
 
-  if(!domLoaded) return <Loader/>;
+  if (!domLoaded) return <Loader/>;
 
   return (
     <>

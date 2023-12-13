@@ -4,4 +4,4 @@ export const scrollToTopStyle = {
   width: '50px',
   height: '50px',
   boxShadow: '0 0 10px 2px black'
-}
+};

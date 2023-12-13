@@ -44,7 +44,7 @@ export const Detail: FC = () => {
     setOpen(!open);
   };
 
-  if(!domLoaded) return <Loader/>;
+  if (!domLoaded) return <Loader/>;
   return (
     <>
       <Box sx={detailBoxStyle}>
@@ -69,7 +69,6 @@ export const Detail: FC = () => {
             priority={true}
             alt=""
           />
-
           <Backdrop
             sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
             open={open}
@@ -87,14 +86,15 @@ export const Detail: FC = () => {
               alt=""
             />
           </Backdrop>
-          
+
+
           <Typography sx={typographyStyle} variant="h6" align="center" mt={4}>
             {overview}
           </Typography>
 
         </Box>
       </Box>
-      
+
     </>
   );
 };

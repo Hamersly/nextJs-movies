@@ -4,4 +4,4 @@ export const basePaginationStyle = {
     backgroundColor: '#1240AB',
     justifyContent: 'center'
   }
-}
+};

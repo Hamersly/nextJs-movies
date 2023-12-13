@@ -5,7 +5,7 @@ import Backdrop from '@mui/material/Backdrop';
 import {Box, Typography} from '@mui/material';
 import {
   unitBoxStyle,
-  unitImageBoxStyle,
+  unitImageBoxStyle, unitImageShadowBoxStyle,
   unitImageStile,
   unitInfoBoxStyle,
   unitPosterStile,
@@ -33,6 +33,8 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     first_air_date,
     popularity
   }: IContent = content;
+  
+  const param = format === 'movie' ?  original_title : original_name; 
 
   const handleClose = () => {
     setOpen(false);
@@ -45,16 +47,18 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
   return (
     <Box sx={unitBoxStyle}>
       <Box sx={unitImageBoxStyle}>
-        <Image
-          onClick={handleToggle}
-          src={`https://image.tmdb.org/t/p/w200${poster_path}`}
-          width={350}
-          height={500}
-          style={unitImageStile}
-          placeholder="blur"
-          blurDataURL={rgbDataURL(163, 163, 163)}
-          alt=""
-        />
+        <Box sx={unitImageShadowBoxStyle}>
+          <Image
+            onClick={handleToggle}
+            src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+            width={350}
+            height={500}
+            style={unitImageStile}
+            placeholder="blur"
+            blurDataURL={rgbDataURL(163, 163, 163)}
+            alt=""
+          />
+        </Box>
         <Backdrop
           sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
           open={open}
@@ -75,7 +79,7 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
 
       <Box sx={unitInfoBoxStyle}>
         <Links href={{
-          pathname: `/${format}/${id}`,
+          pathname: `/${format}/${param}`,
           query: {format: format, id: `${id}`},
         }}>
 

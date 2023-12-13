@@ -27,6 +27,11 @@ export const unitTypographyStyle = {
   color: 'white',
   fontWeight: 'bold',
   lineHeight: ' 1.5em',
+  textShadow: '10px 12px 15px black',
+};
+export const unitImageShadowBoxStyle = {
+  boxShadow: '10px 12px 15px 4px rgba(0, 1, 2, 0.50)',
+  height: '200px'
 };
 
 export const unitImageStile = {
@@ -35,6 +40,8 @@ export const unitImageStile = {
 };
 
 export const unitPosterStile = {
-  height: '80%',
+  height: 'auto',
   width: 'auto',
+  maxWidth: '100%',
+  maxHeight: '100%'
 };

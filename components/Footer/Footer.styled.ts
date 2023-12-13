@@ -10,10 +10,11 @@ export const footerBoxStyle = {
 export const footerCreatedByBox = {
   display: 'flex',
   alignItems: 'center'
-}
+};
 
 export const footerTypographyStyle = {
   color: 'white',
   fontWeight: 'bold',
   lineHeight: '1.5em',
+  textShadow: '10px 12px 15px black',
 };

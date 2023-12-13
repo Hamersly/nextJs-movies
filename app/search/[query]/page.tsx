@@ -1,5 +1,5 @@
 import {Metadata} from 'next';
-import {ContentList} from "@/components/ContentList/ContentList";
+import {ContentList} from '@/components/ContentList/ContentList';
 
 interface IProps {
   params: {

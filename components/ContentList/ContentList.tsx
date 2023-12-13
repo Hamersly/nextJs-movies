@@ -4,10 +4,7 @@ import {ContentUnit} from '../ContentUnit/ContentUnit';
 import {Box} from '@mui/material';
 import {IHandleChangeFunc, IListResponse} from '@/types/types';
 import {Loader} from '../UI/Loader/Loader';
-import {
-  cLBoxStyle,
-  contentBoxStyle
-} from '@/components/ContentList/ContentList.styled';
+import {cLBoxStyle, contentBoxStyle} from '@/components/ContentList/ContentList.styled';
 import {BasePagination} from '../BasePagination/BasePagination';
 import {getContentList, getSearchResult} from '@/helpers/getContent';
 import {SortedContent} from '../SortedContent/SortedContent';
@@ -54,7 +51,7 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
     setSort(param);
   };
 
-  if(!domLoaded) return <Loader/>;
+  if (!domLoaded) return <Loader/>;
   return (
     <Box sx={contentBoxStyle}>
       {results.length && search === null ?

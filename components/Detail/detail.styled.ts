@@ -10,12 +10,14 @@ export const detailBoxStyle = {
   width: '95%',
   maxWidth: '800px',
   minHeight: '50vh',
+  boxShadow: '10px 12px 15px 4px rgba(0, 1, 2, 0.50)'
 };
 
 export const typographyStyle = {
   color: 'white',
   fontWeight: 'bold',
   lineHeight: ' 1.5em',
+  textShadow: '10px 12px 15px black',
 };
 
 export const detailInfoBoxStyle = {
@@ -28,11 +30,13 @@ export const detailInfoBoxStyle = {
 };
 
 export const detailImageStile = {
-  width: '100%',
   height: 'auto',
+  width: '100%',
 };
 
 export const detailPosterStile = {
   height: 'auto',
-  width: '100%',
+  width: 'auto',
+  maxWidth: '100%',
+  maxHeight: '100%'
 };

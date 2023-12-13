@@ -1,9 +1,8 @@
-'use client';
 import {FC, useState} from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
-import {filterControl} from './SortedContent.styled';
+import {formControlStyle, selectControlStyle} from './SortedContent.styled';
 import FormControl from '@mui/material/FormControl';
 
 interface IProps {
@@ -20,8 +19,8 @@ export const SortedContent: FC<IProps> = ({sort}) => {
   };
 
   return (
-    <div>
-      <FormControl sx={filterControl}>
+    <>
+      <FormControl sx={formControlStyle}>
         <InputLabel sx={{color: 'white'}}>
           Отображать...
         </InputLabel>
@@ -30,7 +29,7 @@ export const SortedContent: FC<IProps> = ({sort}) => {
           onChange={handleChange}
           autoWidth
           label="Отображать..."
-          sx={{backgroundColor: '#1240AB', color: 'white'}}
+          sx={selectControlStyle}
         >
           <MenuItem value={'popularity'}>
             <em>По популярности</em>
@@ -39,6 +38,6 @@ export const SortedContent: FC<IProps> = ({sort}) => {
           <MenuItem value={'title'}>По названию</MenuItem>
         </Select>
       </FormControl>
-    </div>
+    </>
   );
 };
