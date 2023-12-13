@@ -1,8 +1,8 @@
 export const homeTypographyStyle = {
   textAlign: 'center',
-  marginTop: '30px',
+  margin: '30px 0',
   color: '#466FD5',
-  textShadow: '2px 2px 2px black',
+  textShadow: '10px 12px 15px black',
   fontWeight: 'bold',
 };
 
