@@ -4,4 +4,4 @@ export const pageBoxStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-}
+};

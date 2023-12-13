@@ -6,7 +6,6 @@ import {IHandleChangeFunc, IListResponse} from '@/types/types';
 import {Loader} from '../UI/Loader/Loader';
 import {
   cLBoxStyle,
-  contentBoxPaginationStyle,
   contentBoxStyle
 } from '@/components/ContentList/ContentList.styled';
 import {BasePagination} from '../BasePagination/BasePagination';

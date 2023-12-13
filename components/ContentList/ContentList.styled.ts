@@ -1,5 +1,5 @@
 export const cLBoxStyle = {
-  margin: '35px'
+  marginBottom: '30px'
 };
 
 export const contentBoxStyle = {

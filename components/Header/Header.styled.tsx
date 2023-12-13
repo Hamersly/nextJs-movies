@@ -3,13 +3,14 @@ export const headerBoxStyle = {
   flexDirection: 'column',
   justifyContent: 'space-between',
   backgroundColor: '#1240AB',
-  height: '30vh',
+  height: '300px',
+  marginBottom: '30px',
 };
 
 export const headerAppBarStyle = {
   width: '100%',
   background: '#1240AB',
-  minHeight: '5vh',
+  minHeight: '50px',
 };
 
 export const headerToolbarStyle = {
@@ -21,11 +22,7 @@ export const headerToolbarStyle = {
 export const headerToolStyle = {
   display: 'flex',
   justifyContent: 'space-between',
+  alignItems: 'center',
   width: '100%',
   maxWidth: '800px'
 };
-
-// export const HeaderLink = styled(Link)`
-//   text-decoration: none;
-//   color: #FFFFFF;
-// `;

@@ -1,4 +1,4 @@
 export const filterControl = {
-  minWidth: '20vh',
+  width: '200px',
   color: 'white'
 }
