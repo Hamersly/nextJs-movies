@@ -10,9 +10,9 @@ export async function GET(req: Request) {
 
   const searchResult = await fetch(url, {
     // cache: 'no-cache',
-    next: {
-      revalidate: 60
-    }
+    // next: {
+    //   revalidate: 60
+    // }
   }).then(res => res.json());
   return NextResponse.json(searchResult);
 }

@@ -6,9 +6,9 @@ export async function GET() {
   const url: string = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=ru-RU&sort_by=popularity.desc`;
   const topList = await fetch(url, {
     // cache: 'no-cache',
-    next: {
-      revalidate: 60,
-    }
+    // next: {
+    //   revalidate: 60,
+    // }
   }).then(res => res.json());
   return NextResponse.json(topList);
 }

@@ -8,9 +8,9 @@ export async function GET(req: Request) {
   const BASE_URL: string = 'https://api.themoviedb.org/3';
   const url: string = `${BASE_URL}/${format}/${id}?api_key=${API_KEY}&language=ru-RU`;
   const detail = await fetch(url, {
-    next: {
-      revalidate: 60
-    }
+    // next: {
+    //   revalidate: 60
+    // }
   }).then(res => res.json());
   return NextResponse.json(detail);
 }

@@ -10,9 +10,9 @@ export async function GET(req: Request) {
   const url: string = `${BASE_URL}/${format}?api_key=${API_KEY}&language=ru-RU&sort_by=${sort}.desc&page=${listPage}`;
   const list = await fetch(url, {
     // cache: 'no-cache',
-    next: {
-      revalidate: 60
-    }
+    // next: {
+    //   revalidate: 60
+    // }
   }).then(res => res.json());
   return NextResponse.json(list);
 }
