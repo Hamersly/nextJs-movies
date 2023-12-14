@@ -1,5 +1,5 @@
 'use client';
-import React, {FC} from 'react';
+import {FC, useState} from 'react';
 import Image from 'next/image';
 import Backdrop from '@mui/material/Backdrop';
 import {Box, Typography} from '@mui/material';
@@ -21,7 +21,7 @@ interface IProps {
 }
 
 export const ContentUnit: FC<IProps> = ({format, content}) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const {
     poster_path,
     id,
@@ -33,7 +33,8 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     first_air_date,
     popularity
   }: IContent = content;
-  
+
+  const [imageSrc, setImageSrc] = useState(`https://image.tmdb.org/t/p/w200${poster_path}`)
   const param = format === 'movie' ?  original_title : original_name; 
 
   const handleClose = () => {
@@ -50,12 +51,13 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
         <Box sx={unitImageShadowBoxStyle}>
           <Image
             onClick={handleToggle}
-            src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+            src={imageSrc}
             width={350}
             height={500}
             style={unitImageStile}
             placeholder="blur"
             blurDataURL={rgbDataURL(163, 163, 163)}
+            onError={() => setImageSrc('/no_image_height.jpg')}
             alt=""
           />
         </Box>

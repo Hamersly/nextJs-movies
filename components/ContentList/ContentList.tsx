@@ -1,5 +1,5 @@
 'use client';
-import {FC, useEffect, useState} from 'react';
+import {FC, useEffect, useState, useCallback} from 'react';
 import {ContentUnit} from '../ContentUnit/ContentUnit';
 import {Box} from '@mui/material';
 import {IHandleChangeFunc, IListResponse} from '@/types/types';
@@ -9,7 +9,7 @@ import {BasePagination} from '../BasePagination/BasePagination';
 import {getContentList, getSearchResult} from '@/helpers/getContent';
 import {SortedContent} from '../SortedContent/SortedContent';
 import {Scroll} from '../UI/Scroll/Scroll';
-
+import {useSearchParams, usePathname, useRouter} from 'next/navigation';
 
 interface IProps {
   format?: string;
@@ -19,10 +19,31 @@ interface IProps {
 export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const [sort, setSort] = useState('popularity');
   const [data, setData] = useState<IListResponse>({page: 1, results: [], total_pages: 1});
-  const {page, results, total_pages}: IListResponse = data;
+  let {page, results, total_pages}: IListResponse = data;
   const [domLoaded, setDomLoaded] = useState(false);
 
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+
+
   useEffect(() => {
+    // const pageRoute = searchParams.get('page');
+    // (page != null && pageRoute != null && page != Number(pageRoute)) ? (page = Number(pageRoute)) : page
     if (search === null) {
       const fetchData = async () => {
         const response: any = await getContentList(format, sort, page);
@@ -45,11 +66,11 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const handleChange: IHandleChangeFunc = async (_event: object, page: number) => {
     const response: any = await getContentList(format, sort, page);
     setData(response);
+    router.push(pathname + '?' + createQueryString('page', `${page}`));
+
   };
 
-  const sorted = (param: string) => {
-    setSort(param);
-  };
+  const sorted = (param: string) => setSort(param);
 
   if (!domLoaded) return <Loader/>;
   return (
