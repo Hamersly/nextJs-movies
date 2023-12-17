@@ -1,5 +1,5 @@
 'use client';
-import {FC, useEffect, useState, useCallback} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {ContentUnit} from '../ContentUnit/ContentUnit';
 import {Box} from '@mui/material';
 import {IHandleChangeFunc, IListResponse} from '@/types/types';
@@ -9,7 +9,6 @@ import {BasePagination} from '../BasePagination/BasePagination';
 import {getContentList, getSearchResult} from '@/helpers/getContent';
 import {SortedContent} from '../SortedContent/SortedContent';
 import {Scroll} from '../UI/Scroll/Scroll';
-import {useSearchParams, usePathname, useRouter} from 'next/navigation';
 
 interface IProps {
   format?: string;
@@ -23,27 +22,8 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const [domLoaded, setDomLoaded] = useState(false);
 
 
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  
-
-  const createQueryString = useCallback(
-    (name: string, value: string) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
-
-      return params.toString();
-    },
-    [searchParams]
-  );
-
-
-
   useEffect(() => {
-    // const pageRoute = searchParams.get('page');
-    // (page != null && pageRoute != null && page != Number(pageRoute)) ? (page = Number(pageRoute)) : page
+    sessionStorage.getItem(`${format}Page`) ? page = Number(sessionStorage.getItem(`${format}Page`)) : sessionStorage.setItem(`${format}Page`, `${page}`);
     if (search === null) {
       const fetchData = async () => {
         const response: any = await getContentList(format, sort, page);
@@ -66,8 +46,7 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const handleChange: IHandleChangeFunc = async (_event: object, page: number) => {
     const response: any = await getContentList(format, sort, page);
     setData(response);
-    router.push(pathname + '?' + createQueryString('page', `${page}`));
-
+    sessionStorage.setItem(`${format}Page`, page.toString());
   };
 
   const sorted = (param: string) => setSort(param);
