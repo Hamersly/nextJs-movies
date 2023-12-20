@@ -5,7 +5,8 @@ import Backdrop from '@mui/material/Backdrop';
 import {Box, Typography} from '@mui/material';
 import {
   unitBoxStyle,
-  unitImageBoxStyle, unitImageShadowBoxStyle,
+  unitImageBoxStyle,
+  unitImageShadowBoxStyle,
   unitImageStile,
   unitInfoBoxStyle,
   unitPosterStile,
@@ -35,7 +36,7 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
   }: IContent = content;
 
   const [imageSrc, setImageSrc] = useState(`https://image.tmdb.org/t/p/w200${poster_path}`)
-  const param = format === 'movie' ?  original_title : original_name; 
+  const param = format === 'movie' ? original_title : original_name;
 
   const handleClose = () => {
     setOpen(false);
@@ -97,7 +98,7 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
 
           <Typography sx={unitTypographyStyle} mt={2} variant="inherit">
             Премьера: {format === 'movie' ? release_date :
-              format === 'tv' && first_air_date}
+            format === 'tv' && first_air_date}
           </Typography>
 
           <Typography sx={unitTypographyStyle} mt={2} variant="inherit">

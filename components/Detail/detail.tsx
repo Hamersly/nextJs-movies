@@ -23,7 +23,6 @@ export const Detail: FC = () => {
   const {title, original_title, name, original_name, backdrop_path, overview}: IDetailResponse = data;
   const [domLoaded, setDomLoaded] = useState(false);
   const searchParams = useSearchParams();
-  const [imageSrc, setImageSrc] = useState(`https://image.tmdb.org/t/p/original${backdrop_path}`)
   const format = searchParams.get('format');
   const id = searchParams.get('id');
 
@@ -60,14 +59,13 @@ export const Detail: FC = () => {
         <Box sx={detailInfoBoxStyle}>
           <Image
             onClick={handleToggle}
-            src={imageSrc}
+            src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
             width={500}
             height={350}
             style={detailImageStile}
             placeholder="blur"
             blurDataURL={rgbDataURL(163, 163, 163)}
             priority={true}
-            onError={() => setImageSrc('/no_image_width.jpg')}
             alt=""
           />
           <Backdrop
