@@ -35,7 +35,6 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     popularity
   }: IContent = content;
 
-  const [imageSrc, setImageSrc] = useState(`https://image.tmdb.org/t/p/w200${poster_path}`)
   const param = format === 'movie' ? original_title : original_name;
 
   const handleClose = () => {
@@ -52,13 +51,12 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
         <Box sx={unitImageShadowBoxStyle}>
           <Image
             onClick={handleToggle}
-            src={imageSrc}
+            src={`https://image.tmdb.org/t/p/w200${poster_path}`}
             width={350}
             height={500}
             style={unitImageStile}
             placeholder="blur"
             blurDataURL={rgbDataURL(163, 163, 163)}
-            onError={() => setImageSrc('/no_image_height.jpg')}
             alt=""
           />
         </Box>
@@ -98,7 +96,7 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
 
           <Typography sx={unitTypographyStyle} mt={2} variant="inherit">
             Премьера: {format === 'movie' ? release_date :
-            format === 'tv' && first_air_date}
+              format === 'tv' && first_air_date}
           </Typography>
 
           <Typography sx={unitTypographyStyle} mt={2} variant="inherit">
