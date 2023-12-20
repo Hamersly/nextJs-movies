@@ -4,6 +4,7 @@ import {Box, Typography} from '@mui/material';
 import Image from 'next/image';
 import {rgbDataURL} from '@/helpers/blur';
 import {IDetailResponse} from '@/types/types';
+import {Loader} from '@/components/UI/Loader/Loader';
 
 interface IProps {
   params: {
@@ -26,8 +27,9 @@ export async function detail(format: string, id: string) {
   return await response.json();
 }
 
-export default async function Page({searchParams}: any) {
+export default async function Page({searchParams}: {searchParams: { format: string, id: string }}) {
   const {format, id} = searchParams;
+  const data = detail(format, id);
   const {
     title,
     original_title,
@@ -35,7 +37,9 @@ export default async function Page({searchParams}: any) {
     original_name,
     backdrop_path,
     overview
-  }: IDetailResponse = await detail(format, id);
+  }: IDetailResponse = await data;
+
+  if (!data) return <Loader/>;
   return (
     <>
       <Box sx={detailBoxStyle}>
