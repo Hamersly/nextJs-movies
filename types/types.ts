@@ -23,6 +23,7 @@ export interface IDetailResponse {
   original_name?: string;
   backdrop_path?: string;
   overview?: string;
+  genres?: [{id: number, name: string}]
 }
 
 export interface IContentList {

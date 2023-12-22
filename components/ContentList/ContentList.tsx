@@ -21,14 +21,13 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   let {page, results, total_pages}: IListResponse = data;
   const [domLoaded, setDomLoaded] = useState(false);
 
-
   useEffect(() => {
     sessionStorage.getItem(`${format}Page`) ? page = Number(sessionStorage.getItem(`${format}Page`)) : sessionStorage.setItem(`${format}Page`, `${page}`);
     if (search === null) {
       const fetchData = async () => {
         const response: any = await getContentList(format, sort, page);
         setData(response);
-
+        setDomLoaded(true);
       };
       fetchData()
         .catch(console.error);
@@ -36,12 +35,12 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
       const fetchData = async () => {
         const response: any = await getSearchResult(search, page);
         setData(response);
+        setDomLoaded(true);
       };
       fetchData()
         .catch(console.error);
     }
-    setDomLoaded(true);
-  }, [format, page, sort, search]);
+  }, [format, sort, search]);
 
   const handleChange: IHandleChangeFunc = async (_event: object, page: number) => {
     const response: any = await getContentList(format, sort, page);

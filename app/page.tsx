@@ -20,8 +20,6 @@ export async function getData() {
 
 export default async function Page() {
   const {results} = await getData();
-  // const {res} = await getImage();
-  // console.log(res);
   return (
     <>
       <Typography sx={homeTypographyStyle} variant="h4">Топ 10 фильмов</Typography>

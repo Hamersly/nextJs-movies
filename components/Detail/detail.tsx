@@ -20,7 +20,7 @@ import {useSearchParams} from 'next/navigation';
 export const Detail: FC = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState<IDetailResponse>({});
-  const {title, original_title, name, original_name, backdrop_path, overview}: IDetailResponse = data;
+  const {title, original_title, name, original_name, backdrop_path, overview, genres}: IDetailResponse = data;
   const [domLoaded, setDomLoaded] = useState(false);
   const searchParams = useSearchParams();
   const format = searchParams.get('format');
@@ -30,10 +30,10 @@ export const Detail: FC = () => {
     const fetchData = async () => {
       const response: any = await getDetail(format, id);
       setData(response);
+      setDomLoaded(true);
     };
     fetchData()
       .catch(console.error);
-    setDomLoaded(true);
   }, [format, id]);
 
   const handleClose = () => {
@@ -56,16 +56,28 @@ export const Detail: FC = () => {
           {format === 'movie' ? original_title : original_name}
         </Typography>
 
+        <Box sx={{display: 'flex', flexDirection: 'row'}}>
+          {genres?.length && genres.map((result: {id: number, name: string}, index) =>
+            <Typography mr={2} mt={2} sx={typographyStyle} variant="subtitle1" align="center" key={index}>
+              {result.name}
+            </Typography>
+          )}
+        </Box>
+
         <Box sx={detailInfoBoxStyle}>
           <Image
             onClick={handleToggle}
-            src={`https://image.tmdb.org/t/p/original${backdrop_path}`}
+            src={
+              backdrop_path 
+                ? 
+                `https://image.tmdb.org/t/p/original${backdrop_path}` 
+                : 
+                'https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg'}
             width={500}
             height={350}
             style={detailImageStile}
             placeholder="blur"
             blurDataURL={rgbDataURL(163, 163, 163)}
-            priority={true}
             alt=""
           />
           <Backdrop
@@ -81,11 +93,9 @@ export const Detail: FC = () => {
               quality={100}
               placeholder="blur"
               blurDataURL={rgbDataURL(163, 163, 163)}
-              priority={true}
               alt=""
             />
           </Backdrop>
-
 
           <Typography sx={typographyStyle} variant="h6" align="center" mt={4}>
             {overview}

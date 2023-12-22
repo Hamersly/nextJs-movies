@@ -51,7 +51,13 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
         <Box sx={unitImageShadowBoxStyle}>
           <Image
             onClick={handleToggle}
-            src={`https://image.tmdb.org/t/p/w200${poster_path}`}
+            src={
+              poster_path
+                ?
+                `https://image.tmdb.org/t/p/original${poster_path}`
+                : 
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVyksNfiHo_balKy9xA2xVP-8w1hULHaFxUQNYjyTOhh2u_AK_srEptjHGyuzOWpMetIc&usqp=CAU'
+            }
             width={350}
             height={500}
             style={unitImageStile}

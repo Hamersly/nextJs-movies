@@ -18,40 +18,44 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'image.tmdb.org',
-        port: '',
-        pathname: '**',
+        hostname: '**',
       },
-      {
-        protocol: 'https',
-        hostname: 'tmdb.org',
-        port: '',
-        pathname: '**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'themoviedb.org',
-        port: '',
-        pathname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '',
-        pathname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: '127.0.0.1',
-        port: '',
-        pathname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: 'next-js-movies-hamerslys-projects.vercel/app',
-        port: '',
-        pathname: '**',
-      },
+      // {
+      //   protocol: 'https',
+      //   hostname: 'image.tmdb.org',
+      //   port: '',
+      //   pathname: '**',
+      // },
+      // {
+      //   protocol: 'https',
+      //   hostname: 'tmdb.org',
+      //   port: '',
+      //   pathname: '**',
+      // },
+      // {
+      //   protocol: 'https',
+      //   hostname: 'themoviedb.org',
+      //   port: '',
+      //   pathname: '**',
+      // },
+      // {
+      //   protocol: 'http',
+      //   hostname: 'localhost',
+      //   port: '',
+      //   pathname: '**',
+      // },
+      // {
+      //   protocol: 'http',
+      //   hostname: '127.0.0.1',
+      //   port: '',
+      //   pathname: '**',
+      // },
+      // {
+      //   protocol: 'http',
+      //   hostname: 'next-js-movies-hamerslys-projects.vercel/app',
+      //   port: '',
+      //   pathname: '**',
+      // },
     ],
   },
   typescript: {
