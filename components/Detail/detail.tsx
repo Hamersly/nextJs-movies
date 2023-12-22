@@ -34,7 +34,7 @@ export const Detail: FC = () => {
     fetchData()
       .catch(console.error);
     setDomLoaded(true);
-  }, [format, id,]);
+  }, [format, id]);
 
   const handleClose = () => {
     setOpen(false);

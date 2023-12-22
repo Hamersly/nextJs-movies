@@ -10,8 +10,18 @@ export async function getData() {
   return await response.json();
 }
 
+
+// export async function getImage() {
+//   const url: string = 'https://image.tmdb.org/t/p/original/dc06PiS7uRAonQwrxKAnDvORZgC.jpg';
+//   const response = await fetch(url);
+//   return await response.text();
+// }
+
+
 export default async function Page() {
   const {results} = await getData();
+  // const {res} = await getImage();
+  // console.log(res);
   return (
     <>
       <Typography sx={homeTypographyStyle} variant="h4">Топ 10 фильмов</Typography>
