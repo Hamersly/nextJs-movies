@@ -56,7 +56,7 @@ export const Detail: FC = () => {
           {format === 'movie' ? original_title : original_name}
         </Typography>
 
-        <Box sx={{display: 'flex', flexDirection: 'row'}}>
+        <Box sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
           {genres?.length && genres.map((result: {id: number, name: string}, index) =>
             <Typography mr={2} mt={2} sx={typographyStyle} variant="subtitle1" align="center" key={index}>
               {result.name}
