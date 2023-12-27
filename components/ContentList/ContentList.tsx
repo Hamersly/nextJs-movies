@@ -9,6 +9,9 @@ import {BasePagination} from '../BasePagination/BasePagination';
 import {getContentList, getSearchResult} from '@/helpers/getContent';
 import {SortedContent} from '../SortedContent/SortedContent';
 import {Scroll} from '../UI/Scroll/Scroll';
+import { motion } from 'framer-motion';
+import {listVariants} from '@/helpers/helpers';
+
 
 interface IProps {
   format?: string;
@@ -22,7 +25,10 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
-    sessionStorage.getItem(`${format}Page`) ? page = Number(sessionStorage.getItem(`${format}Page`)) : sessionStorage.setItem(`${format}Page`, `${page}`);
+    if(sessionStorage.getItem(`${format}Page`))
+      page = Number(sessionStorage.getItem(`${format}Page`));
+    else sessionStorage.setItem(`${format}Page`, `${page}`);
+
     if (search === null) {
       const fetchData = async () => {
         const response: any = await getContentList(format, sort, page);
@@ -53,34 +59,38 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   if (!domLoaded) return <Loader/>;
   return (
     <Box sx={contentBoxStyle}>
-      {results.length && search === null ?
+      {(results.length && search === null) &&
         <Box sx={cLBoxStyle}>
           <SortedContent sort={sorted}/>
         </Box>
-        :
-        null
       }
-      {results.length ?
+
+      {results.length &&
         <Box sx={cLBoxStyle}>
           <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
         </Box>
-        :
-        null
       }
 
-      {results.length ?
+      {results.length &&
         results.map((result: any) =>
-          <ContentUnit format={format} content={result} key={result.id}/>)
-        :
-        <Loader/>
+          <motion.div
+            style={{width: '100%', maxWidth: '800px'}}
+            key={result.id}
+            variants={listVariants}
+            initial='hidden'
+            animate='show'
+          >
+            <ContentUnit
+              format={format}
+              content={result}
+            />
+          </motion.div>)
       }
 
-      {results.length ?
+      {results.length &&
         <Box sx={cLBoxStyle}>
           <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
         </Box>
-        :
-        null
       }
       <Scroll/>
 

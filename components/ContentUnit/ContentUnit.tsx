@@ -1,7 +1,6 @@
 'use client';
 import {FC, useState} from 'react';
 import Image from 'next/image';
-import Backdrop from '@mui/material/Backdrop';
 import {Box, Typography} from '@mui/material';
 import {
   unitBoxStyle,
@@ -15,6 +14,7 @@ import {
 import {IContent} from '@/types/types';
 import {Links} from '../Links/Links';
 import {rgbDataURL} from '@/helpers/blur';
+import {BackdropImg} from '@/components/UI/BackdropImg/BackdropImg';
 
 interface IProps {
   format?: string;
@@ -66,22 +66,14 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
             alt=""
           />
         </Box>
-        <Backdrop
-          sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
+        <BackdropImg
+          handleClose={handleClose}
+          path={poster_path}
           open={open}
-          onClick={handleClose}
-        >
-          <Image
-            src={`https://image.tmdb.org/t/p/original${poster_path}`}
-            width={3500}
-            height={5000}
-            style={unitPosterStile}
-            quality={100}
-            placeholder="blur"
-            blurDataURL={rgbDataURL(163, 163, 163)}
-            alt=""
-          />
-        </Backdrop>
+          width={3500}
+          height={5000}
+          styles={unitPosterStile}
+        />
       </Box>
 
       <Box sx={unitInfoBoxStyle}>
@@ -89,7 +81,6 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
           pathname: `/${format}/${param}`,
           query: {format: format, id: `${id}`},
         }}>
-
           <Typography sx={unitTypographyStyle} variant="h6">
             {format === 'movie' ? `"${title}"` :
               format === 'tv' && `"${name}"`}

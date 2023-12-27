@@ -20,6 +20,15 @@ export const typographyStyle = {
   textShadow: '10px 12px 15px black',
 };
 
+export const chipStyle = {
+  color: 'white',
+  fontWeight: 'bold',
+  lineHeight: ' 1.5em',
+  boxShadow: '3px 5px 6px black',
+  marginTop: '15px',
+  marginRight: '15px'
+};
+
 export const detailInfoBoxStyle = {
   display: 'flex',
   flexDirection: 'column',

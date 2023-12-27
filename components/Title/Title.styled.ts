@@ -21,8 +21,3 @@ export const titleTwoStyle = {
 
 };
 
-export const TitleLink = {
-  textDecoration: 'none',
-  color: '#466FD5',
-  fontWeight: 'bold',
-};
