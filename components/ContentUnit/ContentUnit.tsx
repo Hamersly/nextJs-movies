@@ -35,8 +35,8 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     popularity
   }: IContent = content;
 
+  const [url, setUrl] = useState(`${process.env.NEXT_PUBLIC_URL_IMG}${poster_path}`);
   const param = format === 'movie' ? original_title : original_name;
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -51,19 +51,14 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
         <Box sx={unitImageShadowBoxStyle}>
           <Image
             onClick={handleToggle}
-            src={
-              poster_path
-                ?
-                `https://image.tmdb.org/t/p/original${poster_path}`
-                : 
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVyksNfiHo_balKy9xA2xVP-8w1hULHaFxUQNYjyTOhh2u_AK_srEptjHGyuzOWpMetIc&usqp=CAU'
-            }
+            src={url}
             width={350}
             height={500}
             style={unitImageStile}
             placeholder="blur"
             blurDataURL={rgbDataURL(163, 163, 163)}
             alt=""
+            onError={() => setUrl(process.env.NEXT_PUBLIC_ERROR_IMG!)}
           />
         </Box>
         <BackdropImg

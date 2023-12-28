@@ -1,49 +1,29 @@
 'use client';
 import {FC, useEffect, useState} from 'react';
-import {Box, Typography, Chip} from '@mui/material';
-import {
-  detailBoxStyle,
-  detailImageStile,
-  detailInfoBoxStyle,
-  detailPosterStile,
-  typographyStyle,
-  chipStyle
-} from '../Detail/detail.styled';
-import Image from 'next/image';
-import {rgbDataURL} from '@/helpers/blur';
+import {Box, Chip, Typography} from '@mui/material';
+import {chipStyle, detailBoxStyle, detailInfoBoxStyle, typographyStyle} from '../Detail/detail.styled';
 import {Loader} from '@/components/UI/Loader/Loader';
 import {IDetailResponse} from '@/types/types';
-import {getDetail} from '@/helpers/getContent';
 import {useSearchParams} from 'next/navigation';
-import { motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 import {listVariants} from '@/helpers/helpers';
-import {BackdropImg} from '@/components/UI/BackdropImg/BackdropImg';
+import {ImageBox} from '@/components/ImageBox/ImageBox';
 
-export const Detail: FC = () => {
-  const [open, setOpen] = useState(false);
-  const [data, setData] = useState<IDetailResponse>({});
+interface IProps {
+  data: any
+}
+
+export const Detail: FC<IProps> = ({data}) => {
   const {title, original_title, name, original_name, backdrop_path, overview, genres}: IDetailResponse = data;
   const [domLoaded, setDomLoaded] = useState(false);
   const searchParams = useSearchParams();
   const format = searchParams.get('format');
-  const id = searchParams.get('id');
+
+  // console.log(url)
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response: any = await getDetail(format, id);
-      setData(response);
-      setDomLoaded(true);
-    };
-    fetchData()
-      .catch(console.error);
+    setDomLoaded(true);
   }, []);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleToggle = () => {
-    setOpen(!open);
-  };
 
   const MotionBox = motion(Box);
 
@@ -70,36 +50,12 @@ export const Detail: FC = () => {
             <Chip sx={chipStyle} label={genre.name} key={genre.id}/>
           )}
         </Box>
-
         <Box sx={detailInfoBoxStyle}>
-          <Image
-            onClick={handleToggle}
-            src={
-              backdrop_path
-                ?
-                `https://image.tmdb.org/t/p/original${backdrop_path}`
-                :
-                'https://www.survivorsuk.org/wp-content/uploads/2017/01/no-image.jpg'}
-            width={500}
-            height={350}
-            style={detailImageStile}
-            placeholder="blur"
-            blurDataURL={rgbDataURL(163, 163, 163)}
-            alt=""
-          />
-          <BackdropImg
-            handleClose={handleClose}
-            path={backdrop_path}
-            open={open}
-            width={5000}
-            height={3500}
-            styles={detailPosterStile}
-          />
+          <ImageBox backdrop_path={backdrop_path}/>
 
           <Typography sx={typographyStyle} variant="h6" align="center" mt={4}>
             {overview}
           </Typography>
-
         </Box>
       </MotionBox>
         :

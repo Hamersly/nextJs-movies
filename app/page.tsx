@@ -10,7 +10,7 @@ export default async function Page() {
       <Typography sx={homeTypographyStyle} variant="h4">
         Топ 10 фильмов
       </Typography>
-      
+
       <Box sx={homeContentStyle}>
         {results && Array.from(results).slice(0, 10).map((result: any) =>
           <ContentUnit format={'movie'} content={result} key={result.id}/>)

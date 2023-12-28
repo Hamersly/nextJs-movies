@@ -12,13 +12,15 @@ interface IProps {
   height: number
   styles: {}
 }
-export const BackdropImg:FC<IProps> = ({
+
+export const BackdropImg: FC<IProps> = ({
   path,
-  handleClose, 
+  handleClose,
   open,
   width,
   height,
-  styles,}
+  styles,
+}
 ) => {
   return (
     <Backdrop
@@ -27,7 +29,7 @@ export const BackdropImg:FC<IProps> = ({
       onClick={handleClose}
     >
       <Image
-        src={`https://image.tmdb.org/t/p/original${path}`}
+        src={`${process.env.NEXT_PUBLIC_URL_IMG}${path}`}
         width={width}
         height={height}
         style={styles}

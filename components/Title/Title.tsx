@@ -28,7 +28,7 @@ export const Title = () => {
       scale: 1.15
     }
   };
-  
+
   return (
     <Box sx={titleBoxStyle}>
       <MotionTitleTopography

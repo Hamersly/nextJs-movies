@@ -9,7 +9,7 @@ import {BasePagination} from '../BasePagination/BasePagination';
 import {getContentList, getSearchResult} from '@/helpers/getContent';
 import {SortedContent} from '../SortedContent/SortedContent';
 import {Scroll} from '../UI/Scroll/Scroll';
-import { motion } from 'framer-motion';
+import {motion} from 'framer-motion';
 import {listVariants} from '@/helpers/helpers';
 
 
@@ -25,7 +25,7 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
-    if(sessionStorage.getItem(`${format}Page`))
+    if (sessionStorage.getItem(`${format}Page`))
       page = Number(sessionStorage.getItem(`${format}Page`));
     else sessionStorage.setItem(`${format}Page`, `${page}`);
 
