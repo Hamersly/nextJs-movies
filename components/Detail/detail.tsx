@@ -1,29 +1,38 @@
 'use client';
 import {FC, useEffect, useState} from 'react';
-import {Box, Chip, Typography} from '@mui/material';
-import {chipStyle, detailBoxStyle, detailInfoBoxStyle, typographyStyle} from '../Detail/detail.styled';
+import {Box, Typography, Chip} from '@mui/material';
+import {
+  detailBoxStyle,
+  detailInfoBoxStyle,
+  typographyStyle,
+  chipStyle
+} from '../Detail/detail.styled';
 import {Loader} from '@/components/UI/Loader/Loader';
+import {ImageBox} from '../ImageBox/ImageBox';
 import {IDetailResponse} from '@/types/types';
+import {getDetail} from '@/helpers/getContent';
 import {useSearchParams} from 'next/navigation';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import {listVariants} from '@/helpers/helpers';
-import {ImageBox} from '@/components/ImageBox/ImageBox';
 
-interface IProps {
-  data: any
-}
-
-export const Detail: FC<IProps> = ({data}) => {
+export const Detail: FC = () => {
+  const [data, setData] = useState<IDetailResponse>({});
   const {title, original_title, name, original_name, backdrop_path, overview, genres}: IDetailResponse = data;
   const [domLoaded, setDomLoaded] = useState(false);
   const searchParams = useSearchParams();
   const format = searchParams.get('format');
-
-  // console.log(url)
+  const id = searchParams.get('id');
 
   useEffect(() => {
-    setDomLoaded(true);
-  }, []);
+    const fetchData = async () => {
+      const response: any = await getDetail(format, id);
+      setData(response);
+      setDomLoaded(true);
+    };
+    fetchData()
+      .catch(console.error);
+    console.log(format)
+  }, [format, id]);
 
   const MotionBox = motion(Box);
 

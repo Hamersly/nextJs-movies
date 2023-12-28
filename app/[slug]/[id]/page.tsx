@@ -1,6 +1,5 @@
 import {Metadata} from 'next';
 import {Detail} from '@/components/Detail/detail';
-import {getDetail} from '@/helpers/getContent';
 
 interface IProps {
   params: {
@@ -15,12 +14,10 @@ export async function generateMetadata({params: {id}}: IProps): Promise<Metadata
   };
 }
 
-export default async function Page({searchParams}: { searchParams: { [key: string]: string | string[] | undefined} }) {
-  const {format, id} = searchParams;
-  const results = await getDetail(format , id);
+export default async function Page() {
   return (
     <>
-      <Detail data={results}/>
+      <Detail/>
     </>
   );
 }
