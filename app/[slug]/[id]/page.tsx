@@ -15,9 +15,9 @@ export async function generateMetadata({params: {id}}: IProps): Promise<Metadata
   };
 }
 
-export default async function Page({searchParams}: { searchParams: { [key: string]: string | string[] | undefined } }) {
+export default async function Page({searchParams}: { searchParams: { [key: string]: string | string[] | undefined} }) {
   const {format, id} = searchParams;
-  const results = await getDetail(format, id);
+  const results = await getDetail(format , id);
   return (
     <>
       <Detail data={results}/>
