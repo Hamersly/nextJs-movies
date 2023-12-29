@@ -15,6 +15,7 @@ import {IContent} from '@/types/types';
 import {Links} from '../Links/Links';
 import {rgbDataURL} from '@/helpers/blur';
 import {BackdropImg} from '@/components/UI/BackdropImg/BackdropImg';
+import {motion} from 'framer-motion';
 
 interface IProps {
   format?: string;
@@ -44,8 +45,13 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     setOpen(!open);
   };
 
+  const MotionBox = motion(Box);
+
   return (
-    <Box sx={unitBoxStyle}>
+    <MotionBox
+      sx={unitBoxStyle}
+      whileHover={{scale: 1.1}}
+    >
       <Box sx={unitImageBoxStyle}>
         <Box sx={unitImageShadowBoxStyle}>
           <Image
@@ -99,6 +105,6 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
         </Links>
       </Box>
 
-    </Box>
+    </MotionBox>
   );
 };

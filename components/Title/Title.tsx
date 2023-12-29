@@ -25,7 +25,7 @@ export const Title = () => {
       transition: {type: 'spring', delay: 0.5}
     },
     hover: {
-      scale: 1.15
+      scale: 1.1
     }
   };
 
