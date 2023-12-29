@@ -21,6 +21,7 @@ export const unitImageBoxStyle = {
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
+
 };
 
 export const unitTypographyStyle = {
@@ -30,13 +31,19 @@ export const unitTypographyStyle = {
   textShadow: '10px 12px 15px black',
 };
 export const unitImageShadowBoxStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
   boxShadow: '10px 12px 15px 4px rgba(0, 1, 2, 0.50)',
-  height: '200px'
+  height: '200px',
+  maxWidth: '150px'
+
 };
 
 export const unitImageStile = {
   width: 'auto',
   height: '200px',
+  overflow: 'hidden',
 };
 
 export const unitPosterStile = {

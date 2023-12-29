@@ -3,6 +3,7 @@ import Image from 'next/image';
 import {detailImageStile, detailPosterStile} from './ImageBox.styled';
 import {rgbDataURL} from '@/helpers/blur';
 import {BackdropImg} from '@/components/UI/BackdropImg/BackdropImg';
+import {maxWidth} from "@mui/system";
 
 interface IProps {
   backdrop_path: string | undefined
