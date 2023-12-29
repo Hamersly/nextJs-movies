@@ -35,7 +35,6 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     popularity
   }: IContent = content;
 
-  const [url, setUrl] = useState(`${process.env.NEXT_PUBLIC_URL_IMG}${poster_path}`);
   const param = format === 'movie' ? original_title : original_name;
   const handleClose = () => {
     setOpen(false);
@@ -51,14 +50,17 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
         <Box sx={unitImageShadowBoxStyle}>
           <Image
             onClick={handleToggle}
-            src={url}
+            src={`${process.env.NEXT_PUBLIC_URL_IMG}${poster_path}`}
             width={350}
             height={500}
             style={unitImageStile}
             placeholder="blur"
             blurDataURL={rgbDataURL(163, 163, 163)}
             alt=""
-            onError={() => setUrl(process.env.NEXT_PUBLIC_ERROR_IMG!)}
+            onError={({currentTarget}) => {
+              currentTarget.onerror = null;
+              currentTarget.src = `${process.env.NEXT_PUBLIC_ERROR_IMG}`;
+            }}
           />
         </Box>
         <BackdropImg

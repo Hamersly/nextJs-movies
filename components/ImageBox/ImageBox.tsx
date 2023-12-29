@@ -10,7 +10,6 @@ interface IProps {
 
 export const ImageBox: FC<IProps> = ({backdrop_path}) => {
   const [open, setOpen] = useState(false);
-  const [url, setUrl] = useState(`${process.env.NEXT_PUBLIC_URL_IMG}${backdrop_path}`);
 
   const handleClose = () => {
     setOpen(false);
@@ -23,14 +22,17 @@ export const ImageBox: FC<IProps> = ({backdrop_path}) => {
     <>
       <Image
         onClick={handleToggle}
-        src={url}
+        src={`${process.env.NEXT_PUBLIC_URL_IMG}${backdrop_path}`}
         width={500}
         height={350}
         style={detailImageStile}
         placeholder="blur"
         blurDataURL={rgbDataURL(163, 163, 163)}
         alt=""
-        onError={() => setUrl(process.env.NEXT_PUBLIC_ERROR_IMG_2!)}
+        onError={({currentTarget}) => {
+          currentTarget.onerror = null;
+          currentTarget.src = `${process.env.NEXT_PUBLIC_ERROR_IMG_2}`;
+        }}
       />
       <BackdropImg
         handleClose={handleClose}
