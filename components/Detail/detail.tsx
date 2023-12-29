@@ -31,7 +31,6 @@ export const Detail: FC = () => {
     };
     fetchData()
       .catch(console.error);
-    console.log(format)
   }, [format, id]);
 
   const MotionBox = motion(Box);

@@ -1,3 +1,4 @@
+'use client'
 import React, {FC} from 'react';
 import {AppBar, Box, Toolbar} from '@mui/material';
 import {MenuEl} from '@/components/MenuEl/MenuEl';
