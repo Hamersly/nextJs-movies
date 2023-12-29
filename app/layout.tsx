@@ -5,6 +5,7 @@ import React from 'react';
 import {Footer} from '@/components/Footer/Footer';
 import {Header} from '@/components/Header/Header';
 import {PageBox} from '@/components/PageBox/PageBox';
+import {Bar} from '@/components/Bar/Bar';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header/>
+        <Bar/>
         <PageBox>
           {children}
         </PageBox>
