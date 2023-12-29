@@ -59,7 +59,7 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
             alt=""
             onError={({currentTarget}) => {
               currentTarget.onerror = null;
-              currentTarget.src = `${process.env.NEXT_PUBLIC_ERROR_IMG}`;
+              currentTarget.src = '/notFound.png';
             }}
           />
         </Box>

@@ -31,7 +31,7 @@ export const ImageBox: FC<IProps> = ({backdrop_path}) => {
         alt=""
         onError={({currentTarget}) => {
           currentTarget.onerror = null;
-          currentTarget.src = `${process.env.NEXT_PUBLIC_ERROR_IMG_2}`;
+          currentTarget.src = '/notFound2.png';
         }}
       />
       <BackdropImg
