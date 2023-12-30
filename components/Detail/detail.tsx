@@ -14,7 +14,7 @@ import {getDetail} from '@/helpers/getContent';
 import {useSearchParams} from 'next/navigation';
 import { motion } from 'framer-motion';
 import {listVariants} from '@/helpers/helpers';
-import {detailImageStile, detailPosterStile} from "./detail.styled";
+import {detailImageStile, detailPosterStile} from './detail.styled';
 
 export const Detail: FC = () => {
   const [data, setData] = useState<IDetailResponse>({});

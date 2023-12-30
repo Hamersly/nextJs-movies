@@ -39,7 +39,7 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
   return (
     <MotionBox
       sx={unitBoxStyle}
-      whileHover={{scale: 1.1}}
+      // whileHover={{scale: 1.1}}
     >
       <Box sx={unitImageBoxStyle}>
         <Box sx={unitImageShadowBoxStyle}>
