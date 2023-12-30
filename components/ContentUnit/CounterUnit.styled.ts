@@ -50,5 +50,6 @@ export const unitPosterStile = {
   height: 'auto',
   width: 'auto',
   maxWidth: '100%',
-  maxHeight: '100%'
+  maxHeight: '100%',
+  zIndex: 999999,
 };
