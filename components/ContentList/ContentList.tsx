@@ -63,38 +63,41 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
           Ничего не найдено:(
       </Typography>
       :
-      <>
-        <Box sx={contentBoxStyle}>
-          {search === null &&
+      (results !== undefined && results.length) ?
+        <>
+          <Box sx={contentBoxStyle}>
+            {search === null &&
             <Box sx={cLBoxStyle}>
               <SortedContent sort={sorted}/>
             </Box>
-          }
+            }
 
-          <Box sx={cLBoxStyle}>
-            <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
+            <Box sx={cLBoxStyle}>
+              <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
+            </Box>
+
+            {results.map((result: any) =>
+              <motion.div
+                style={{width: '100%', maxWidth: '800px'}}
+                key={result.id}
+                variants={listVariants}
+                initial='hidden'
+                animate='show'
+              >
+                <ContentUnit
+                  format={format}
+                  content={result}
+                />
+              </motion.div>)
+            }
+
+            <Box sx={cLBoxStyle}>
+              <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
+            </Box>
+            <Scroll/>
           </Box>
-
-          {results != null && results.map((result: any) =>
-            <motion.div
-              style={{width: '100%', maxWidth: '800px'}}
-              key={result.id}
-              variants={listVariants}
-              initial='hidden'
-              animate='show'
-            >
-              <ContentUnit
-                format={format}
-                content={result}
-              />
-            </motion.div>)
-          }
-
-          <Box sx={cLBoxStyle}>
-            <BasePagination page={page} total_pages={total_pages} handleChange={handleChange}/>
-          </Box>
-          <Scroll/>
-        </Box>
-      </>
+        </>
+        : 
+        null
   );
 };
