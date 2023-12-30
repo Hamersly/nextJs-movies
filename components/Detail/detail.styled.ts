@@ -3,7 +3,7 @@ export const detailBoxStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  margin: '30px 0',
+  marginBottom: '30px',
   backgroundColor: '#2A4380',
   borderRadius: '30px',
   padding: '20px 10px',
