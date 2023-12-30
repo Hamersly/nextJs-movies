@@ -53,11 +53,14 @@ export const Detail: FC = () => {
           {format === 'movie' ? original_title : original_name}
         </Typography>
 
-        <Box sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
-          {genres?.length && genres.map((genre: { id: number, name: string }) =>
-            <Chip sx={chipStyle} label={genre.name} key={genre.id}/>
-          )}
-        </Box>
+        {(genres && genres?.length) ?
+          <Box sx={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+            {genres.map((genre: { id: number, name: string }) =>
+              <Chip sx={chipStyle} label={genre.name} key={genre.id}/>
+            )}
+          </Box> :
+          <></>
+        }
         <Box sx={detailInfoBoxStyle}>
           <ImageBox backdrop_path={backdrop_path}/>
 
