@@ -1,6 +1,5 @@
 'use client';
-import {FC, useState} from 'react';
-import Image from 'next/image';
+import {FC} from 'react';
 import {Box, Typography} from '@mui/material';
 import {
   unitBoxStyle,
@@ -13,9 +12,8 @@ import {
 } from './CounterUnit.styled';
 import {IContent} from '@/types/types';
 import {Links} from '../Links/Links';
-import {rgbDataURL} from '@/helpers/blur';
-import {BackdropImg} from '@/components/UI/BackdropImg/BackdropImg';
 import {motion} from 'framer-motion';
+import {ImageBox} from '@/components/ImageBox/ImageBox';
 
 interface IProps {
   format?: string;
@@ -23,7 +21,6 @@ interface IProps {
 }
 
 export const ContentUnit: FC<IProps> = ({format, content}) => {
-  const [open, setOpen] = useState(false);
   const {
     poster_path,
     id,
@@ -37,14 +34,6 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
   }: IContent = content;
 
   const param = format === 'movie' ? original_title : original_name;
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleToggle = () => {
-    setOpen(!open);
-  };
-
   const MotionBox = motion(Box);
 
   return (
@@ -54,29 +43,17 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     >
       <Box sx={unitImageBoxStyle}>
         <Box sx={unitImageShadowBoxStyle}>
-          <Image
-            onClick={handleToggle}
-            src={`${process.env.NEXT_PUBLIC_URL_IMG}${poster_path}`}
-            width={350}
-            height={500}
-            style={unitImageStile}
-            placeholder="blur"
-            blurDataURL={rgbDataURL(163, 163, 163)}
-            alt=""
-            onError={({currentTarget}) => {
-              currentTarget.onerror = null;
-              currentTarget.src = '/notFound.png';
-            }}
+          <ImageBox
+            img_path={poster_path}
+            errorImgSrc={'/notFound.png'}
+            imageStile={unitImageStile}
+            posterStile={unitPosterStile}
+            imgWidth={350}
+            imgHeight={500}
+            backdropWidth={3500}
+            backdropHeight={5000}
           />
         </Box>
-        <BackdropImg
-          handleClose={handleClose}
-          path={poster_path}
-          open={open}
-          width={3500}
-          height={5000}
-          styles={unitPosterStile}
-        />
       </Box>
 
       <Box sx={unitInfoBoxStyle}>
@@ -104,7 +81,6 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
           </Typography>
         </Links>
       </Box>
-
     </MotionBox>
   );
 };

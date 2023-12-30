@@ -14,6 +14,7 @@ import {getDetail} from '@/helpers/getContent';
 import {useSearchParams} from 'next/navigation';
 import { motion } from 'framer-motion';
 import {listVariants} from '@/helpers/helpers';
+import {detailImageStile, detailPosterStile} from "./detail.styled";
 
 export const Detail: FC = () => {
   const [data, setData] = useState<IDetailResponse>({});
@@ -62,7 +63,16 @@ export const Detail: FC = () => {
           <></>
         }
         <Box sx={detailInfoBoxStyle}>
-          <ImageBox backdrop_path={backdrop_path}/>
+          <ImageBox
+            img_path={backdrop_path}
+            errorImgSrc={'/notFound2.png'}
+            imageStile={detailImageStile}
+            posterStile={detailPosterStile}
+            imgWidth={500}
+            imgHeight={350}
+            backdropWidth={5000}
+            backdropHeight={3500}
+          />
 
           <Typography sx={typographyStyle} variant="h6" align="center" mt={4}>
             {overview}

@@ -1,15 +1,41 @@
 import {FC, useState} from 'react';
 import Image from 'next/image';
-import {detailImageStile, detailPosterStile} from './ImageBox.styled';
 import {rgbDataURL} from '@/helpers/blur';
 import {BackdropImg} from '@/components/UI/BackdropImg/BackdropImg';
-import {maxWidth} from "@mui/system";
+
+
+// <ImageBox
+//   img_path={poster_path}
+//   errorImgSrc={'/notFound.png'}
+//   imageStile={unitImageStile}
+//   posterStile={unitPosterStile}
+//   imgWidth={350}
+//   imgHeight={500}
+//   backdropWidth={3500}
+//   backdropHeight={5000}
+// />
 
 interface IProps {
-  backdrop_path: string | undefined
+  img_path: string | undefined
+  errorImgSrc: string
+  imageStile: {}
+  posterStile: {}
+  imgWidth: number,
+  imgHeight: number,
+  backdropWidth: number,
+  backdropHeight: number,
 }
 
-export const ImageBox: FC<IProps> = ({backdrop_path}) => {
+export const ImageBox: FC<IProps> = ({
+  img_path,
+  errorImgSrc,
+  imageStile, 
+  posterStile,
+  imgWidth,
+  imgHeight,
+  backdropWidth,
+  backdropHeight
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -23,25 +49,25 @@ export const ImageBox: FC<IProps> = ({backdrop_path}) => {
     <>
       <Image
         onClick={handleToggle}
-        src={`${process.env.NEXT_PUBLIC_URL_IMG}${backdrop_path}`}
-        width={500}
-        height={350}
-        style={detailImageStile}
+        src={`${process.env.NEXT_PUBLIC_URL_IMG}${img_path}`}
+        width={imgWidth}
+        height={imgHeight}
+        style={imageStile}
         placeholder="blur"
         blurDataURL={rgbDataURL(163, 163, 163)}
         alt=""
         onError={({currentTarget}) => {
           currentTarget.onerror = null;
-          currentTarget.src = '/notFound2.png';
+          currentTarget.src = errorImgSrc;
         }}
       />
       <BackdropImg
         handleClose={handleClose}
-        path={backdrop_path}
+        path={img_path}
         open={open}
-        width={5000}
-        height={3500}
-        styles={detailPosterStile}
+        width={backdropWidth}
+        height={backdropHeight}
+        styles={posterStile}
       />
     </>
   );

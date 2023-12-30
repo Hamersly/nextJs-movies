@@ -24,7 +24,7 @@ export const BackdropImg: FC<IProps> = ({
 ) => {
   return (
     <Backdrop
-      sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
+      sx={{color: '#fff', zIndex: 999999}}
       open={open}
       onClick={handleClose}
     >
