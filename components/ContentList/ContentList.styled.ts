@@ -17,3 +17,10 @@ export const contentBoxPaginationStyle = {
   alignItems: 'space-between',
   height: '100%'
 };
+
+export const contentTypographyStyle = {
+  color: 'white',
+  fontWeight: 'bold',
+  lineHeight: ' 1.5em',
+  textShadow: '10px 12px 15px black',
+};
