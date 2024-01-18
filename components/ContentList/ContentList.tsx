@@ -25,27 +25,26 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
   const [domLoaded, setDomLoaded] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem(`${format}Page`))
+    if (sessionStorage.getItem(`${format}Page`)) {
       page = Number(sessionStorage.getItem(`${format}Page`));
-    else sessionStorage.setItem(`${format}Page`, `${page}`);
-
-    if (search === null) {
-      const fetchData = async () => {
-        const response: any = await getContentList(format, sort, page);
-        setData(response);
-        setDomLoaded(true);
-      };
-      fetchData()
-        .catch(console.error);
     } else {
-      const fetchData = async () => {
-        const response: any = await getSearchResult(search, page);
-        setData(response);
-        setDomLoaded(true);
-      };
-      fetchData()
-        .catch(console.error);
+      sessionStorage.setItem(`${format}Page`, `${page}`);
     }
+
+    const fetchData = async () => {
+      let requestFunc;
+      if (search === null) {
+        requestFunc = getContentList(format, sort, page);
+      } else {
+        requestFunc = getSearchResult(search, page);
+      }
+      const response: any = await requestFunc;
+      setData(response);
+      setDomLoaded(true);
+    };
+    fetchData()
+      .catch(console.error);
+  // }
   }, [format, sort, search]);
 
   const handleChange: IHandleChangeFunc = async (_event: object, page: number) => {
@@ -67,9 +66,9 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
         <>
           <Box sx={contentBoxStyle}>
             {search === null &&
-            <Box sx={cLBoxStyle}>
-              <SortedContent sort={sorted}/>
-            </Box>
+                <Box sx={cLBoxStyle}>
+                  <SortedContent sort={sorted}/>
+                </Box>
             }
 
             <Box sx={cLBoxStyle}>
@@ -97,7 +96,7 @@ export const ContentList: FC<IProps> = ({format = 'movie', search = null}) => {
             <Scroll/>
           </Box>
         </>
-        : 
+        :
         null
   );
 };
