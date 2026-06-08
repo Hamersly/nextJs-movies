@@ -1,25 +1,28 @@
-import {Metadata} from 'next';
-import {ContentList} from '@/components/ContentList/ContentList';
+import { Metadata } from 'next';
+import { ContentList } from '@/components/ContentList/ContentList';
 
 interface IProps {
-  params: {
-    query: string,
-  }
+  params: Promise<{
+    query: string;
+  }>;
 }
 
-export async function generateMetadata({params: {query}}: IProps): Promise<Metadata> {
+export async function generateMetadata({ params }: IProps): Promise<Metadata> {
+  const { query } = await params;
+  const title = `Поиск: ${query}`;
+  const description = `Результаты поиска по запросу "${query}"`;
   return {
-    title: query,
-    description: '',
+    title,
+    description,
+    openGraph: { title, description },
   };
 }
 
-export default async function Page({params: {query}}: IProps) {
+export default async function Page({ params }: IProps) {
+  const { query } = await params;
   return (
     <>
-      <ContentList
-        search={query}
-      />
+      <ContentList search={query} />
     </>
   );
 }

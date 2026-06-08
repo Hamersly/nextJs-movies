@@ -1,7 +1,11 @@
-export const scrollToTopStyle = {
-  borderRadius: '50%',
+import { CSSProperties } from 'react';
+
+export const scrollToTopStyle: CSSProperties = {
+  position: 'fixed',
+  bottom: 16,
+  right: 16,
   backgroundColor: '#6C8AD5',
-  width: '50px',
-  height: '50px',
-  boxShadow: '0 0 10px 2px black'
+  boxShadow: '0 0 10px 2px black',
+  transition: 'opacity 0.3s',
+  zIndex: 1000,
 };

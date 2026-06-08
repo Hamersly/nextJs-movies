@@ -1,26 +1,26 @@
 'use client';
-import {FC} from 'react';
-import {Box, Typography} from '@mui/material';
+import { FC } from 'react';
+import { Box, Typography } from '@mui/material';
 import {
   unitBoxStyle,
   unitImageBoxStyle,
   unitImageShadowBoxStyle,
-  unitImageStile,
+  unitImageStyle,
   unitInfoBoxStyle,
-  unitPosterStile,
-  unitTypographyStyle
-} from './CounterUnit.styled';
-import {IContent} from '@/types/types';
-import {Links} from '../Links/Links';
-import {motion} from 'framer-motion';
-import {ImageBox} from '@/components/ImageBox/ImageBox';
+  unitPosterStyle,
+  unitTypographyStyle,
+} from './ContentUnit.styled';
+import { IContent } from '@/types/types';
+import { Links } from '../Links/Links';
+import { ImageBox } from '@/components/ImageBox/ImageBox';
 
 interface IProps {
   format?: string;
-  content: any;
+  content: IContent;
+  priority?: boolean;
 }
 
-export const ContentUnit: FC<IProps> = ({format, content}) => {
+export const ContentUnit: FC<IProps> = ({ format, content, priority = false }) => {
   const {
     poster_path,
     id,
@@ -30,50 +30,44 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
     original_name,
     release_date,
     first_air_date,
-    popularity
+    popularity,
   }: IContent = content;
 
-  const param = format === 'movie' ? original_title : original_name;
-  const MotionBox = motion(Box);
-
   return (
-    <MotionBox
-      sx={unitBoxStyle}
-      // whileHover={{scale: 1.1}}
-    >
+    <Box sx={unitBoxStyle}>
       <Box sx={unitImageBoxStyle}>
         <Box sx={unitImageShadowBoxStyle}>
           <ImageBox
             img_path={poster_path}
             errorImgSrc={'/notFound.png'}
-            imageStile={unitImageStile}
-            posterStile={unitPosterStile}
+            imageStyle={unitImageStyle}
+            posterStyle={unitPosterStyle}
             imgWidth={350}
             imgHeight={500}
             backdropWidth={3500}
             backdropHeight={5000}
+            alt={title || name || ''}
+            priority={priority}
           />
         </Box>
       </Box>
 
       <Box sx={unitInfoBoxStyle}>
-        <Links href={{
-          pathname: `/${format}/${param}`,
-          query: {format: format, id: `${id}`},
-        }}>
+        <Links
+          href={{
+            pathname: `/${format}/${id}`,
+          }}
+        >
           <Typography sx={unitTypographyStyle} variant="h6">
-            {format === 'movie' ? `"${title}"` :
-              format === 'tv' && `"${name}"`}
+            {format === 'movie' ? `"${title}"` : `"${name}"`}
           </Typography>
 
           <Typography sx={unitTypographyStyle} mt={2} variant="inherit">
-            {format === 'movie' ? `"${original_title}"` :
-              format === 'tv' && `"${original_name}"`}
+            {format === 'movie' ? `"${original_title}"` : `"${original_name}"`}
           </Typography>
 
           <Typography sx={unitTypographyStyle} mt={2} variant="inherit">
-            Премьера: {format === 'movie' ? release_date :
-              format === 'tv' && first_air_date}
+            Премьера: {format === 'movie' ? release_date : first_air_date}
           </Typography>
 
           <Typography sx={unitTypographyStyle} mt={2} variant="inherit">
@@ -81,6 +75,6 @@ export const ContentUnit: FC<IProps> = ({format, content}) => {
           </Typography>
         </Links>
       </Box>
-    </MotionBox>
+    </Box>
   );
 };

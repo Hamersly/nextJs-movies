@@ -35,16 +35,16 @@ export const unitImageShadowBoxStyle = {
   alignItems: 'center',
   boxShadow: '10px 12px 15px 4px rgba(0, 1, 2, 0.50)',
   height: '200px',
-  maxWidth: '150px'
+  maxWidth: '150px',
 };
 
-export const unitImageStile = {
+export const unitImageStyle = {
   width: 'auto',
   height: '200px',
   overflow: 'hidden',
 };
 
-export const unitPosterStile = {
+export const unitPosterStyle = {
   height: 'auto',
   width: 'auto',
   maxWidth: '100%',

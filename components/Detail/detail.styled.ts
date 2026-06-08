@@ -10,7 +10,7 @@ export const detailBoxStyle = {
   width: '95%',
   maxWidth: '800px',
   minHeight: '50vh',
-  boxShadow: '10px 12px 15px 4px rgba(0, 1, 2, 0.50)'
+  boxShadow: '10px 12px 15px 4px rgba(0, 1, 2, 0.50)',
 };
 
 export const typographyStyle = {
@@ -20,13 +20,25 @@ export const typographyStyle = {
   textShadow: '10px 12px 15px black',
 };
 
+export const genresBoxStyle = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+};
+
+export const errorTypographyStyle = {
+  color: '#466FD5',
+  fontWeight: 'bold',
+  textShadow: '10px 12px 15px black',
+};
+
 export const chipStyle = {
   color: 'white',
   fontWeight: 'bold',
   lineHeight: ' 1.5em',
   boxShadow: '3px 5px 6px black',
   marginTop: '15px',
-  marginRight: '15px'
+  marginRight: '15px',
 };
 
 export const detailInfoBoxStyle = {
@@ -38,12 +50,12 @@ export const detailInfoBoxStyle = {
   overflow: 'hidden',
 };
 
-export const detailImageStile = {
+export const detailImageStyle = {
   height: 'auto',
   width: '100%',
 };
 
-export const detailPosterStile = {
+export const detailPosterStyle = {
   height: 'auto',
   width: 'auto',
   maxWidth: '100%',

@@ -6,70 +6,36 @@ const nextConfig = {
         source: '/api/:path*',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
-          { key: 'Access-Control-Allow-Origin', value: '*' }, // replace this your actual origin
-          { key: 'Access-Control-Allow-Methods', value: 'GET,DELETE,PATCH,POST,PUT' },
-          { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' },
-        ]
-      }
+          { key: 'Access-Control-Allow-Origin', value: 'http://localhost:3000' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET' },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'X-Requested-With, Content-Type',
+          },
+        ],
+      },
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Content-Security-Policy',
+            value:
+              "default-src 'self'; img-src 'self' https://image.tmdb.org; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-eval' 'unsafe-inline'",
+          },
+        ],
+      },
     ];
   },
 
   images: {
     unoptimized: true,
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-        port: '',
-        pathname: '**',
-      },
-      {
-        protocol: 'http',
-        hostname: '**',
-        port: '',
-        pathname: '**',
-      },
-      // {
-      //   protocol: 'https',
-      //   hostname: 'image.tmdb.org',
-      //   port: '',
-      //   pathname: '**',
-      // },
-      // {
-      //   protocol: 'https',
-      //   hostname: 'tmdb.org',
-      //   port: '',
-      //   pathname: '**',
-      // },
-      // {
-      //   protocol: 'https',
-      //   hostname: 'themoviedb.org',
-      //   port: '',
-      //   pathname: '**',
-      // },
-      // {
-      //   protocol: 'http',
-      //   hostname: 'localhost',
-      //   port: '',
-      //   pathname: '**',
-      // },
-      // {
-      //   protocol: 'http',
-      //   hostname: '127.0.0.1',
-      //   port: '',
-      //   pathname: '**',
-      // },
-      // {
-      //   protocol: 'http',
-      //   hostname: 'next-js-movies-hamerslys-projects.vercel/app',
-      //   port: '',
-      //   pathname: '**',
-      // },
+      { protocol: 'https', hostname: 'image.tmdb.org', port: '', pathname: '/t/p/**' },
     ],
   },
-  typescript: {
-    ignoreBuildErrors: true,
-  }
 };
 
 module.exports = nextConfig;

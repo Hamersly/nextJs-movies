@@ -1,32 +1,47 @@
-export async function getTopList() {
-  const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
-  const BASE_URL: string = 'https://api.themoviedb.org/3';
-  const url: string = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=ru-RU&sort_by=popularity.desc`;
-  const response = await fetch(url);
-  return await response.json();
+import { IDetailResponse, IListResponse } from '@/types/types';
+
+const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
+
+async function fetchJSON<T>(url: string, signal?: AbortSignal): Promise<T> {
+  const response = await fetch(url, { signal });
+  if (!response.ok) throw new Error(`fetch failed: ${response.status}`);
+  return response.json();
 }
 
-export const getDetail = async (format: string | null, id: string | null): Promise<object> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/detail?format=${format}&id=${id}`,{cache: 'no-cache', mode: 'no-cors',});
-  if (!response.ok) throw new Error('Unable to fetch detail content.');
-  return response.json();
+export async function getTopList(): Promise<IListResponse> {
+  try {
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=ru-RU&sort_by=popularity.desc&page=1`;
+    return await fetchJSON<IListResponse>(url);
+  } catch (e) {
+    console.error('getTopList failed:', e);
+    return { results: [], page: 1, total_pages: 1 };
+  }
+}
+
+export const getDetail = async (
+  format: string | null,
+  id: string | null,
+  signal?: AbortSignal,
+): Promise<IDetailResponse> => {
+  return fetchJSON<IDetailResponse>(`/api/detail?format=${format}&id=${id}`, signal);
 };
 
-export const getContentList = async (format: string, sort: string, listPage: number = 1): Promise<object> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/list?format=${format}&sort=${sort}&listPage=${listPage}`, {
-    cache: 'no-cache',
-    mode: 'no-cors',
-  });
-  if (!response.ok) throw new Error('Unable to fetch contentList.');
-  return response.json();
+export const getContentList = async (
+  format: string,
+  sort: string,
+  listPage: number = 1,
+  signal?: AbortSignal,
+): Promise<IListResponse> => {
+  return fetchJSON<IListResponse>(
+    `/api/list?format=${format}&sort=${sort}&listPage=${listPage}`,
+    signal,
+  );
 };
 
-export const getSearchResult = async (query: string | null, queryPage: number = 1): Promise<object> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/search?queryPage=${queryPage}&query=${query}`, {
-    cache: 'no-cache',
-    mode: 'no-cors',
-  });
-  if (!response.ok) throw new Error('Unable to fetch search result.');
-  return response.json();
+export const getSearchResult = async (
+  query: string | null,
+  queryPage: number = 1,
+  signal?: AbortSignal,
+): Promise<IListResponse> => {
+  return fetchJSON<IListResponse>(`/api/search?queryPage=${queryPage}&query=${query}`, signal);
 };
-

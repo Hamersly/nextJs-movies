@@ -10,10 +10,16 @@ export const headerToolbarStyle = {
   backgroundColor: '#1240AB',
 };
 
+export const headerActionsStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 1,
+};
+
 export const headerToolStyle = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   width: '100%',
-  maxWidth: '800px'
+  maxWidth: '800px',
 };

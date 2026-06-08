@@ -1,26 +1,33 @@
-import {Metadata} from 'next';
-import {ContentList} from '@/components/ContentList/ContentList';
+import { Metadata } from 'next';
+import { ContentList } from '@/components/ContentList/ContentList';
 
 interface IProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-export async function generateMetadata({params: {slug}}: IProps): Promise<Metadata> {
+export async function generateMetadata({ params }: IProps): Promise<Metadata> {
+  const { slug } = await params;
   const title = slug === 'movie' ? 'Фильмы' : slug === 'tv' ? 'Сериалы' : '';
+  const description =
+    slug === 'movie'
+      ? 'Смотрите популярные фильмы. Большая коллекция кино на любой вкус.'
+      : slug === 'tv'
+        ? 'Смотрите популярные сериалы. Лучшие сериалы мира.'
+        : '';
   return {
-    title: title,
-    description: '',
+    title,
+    description,
+    openGraph: { title, description },
   };
 }
 
-export default function Page({params: {slug}}: IProps) {
+export default async function Page({ params }: IProps) {
+  const { slug } = await params;
   return (
     <>
-      <ContentList
-        format={slug}
-      />
+      <ContentList format={slug} />
     </>
   );
 }

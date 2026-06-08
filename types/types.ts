@@ -1,3 +1,5 @@
+// Интерфейсы данных TMDB, используемые на клиенте и сервере.
+// IContent — общий для фильмов и сериалов (поля дублируются API).
 export interface IContent {
   poster_path: string;
   id: number;
@@ -6,13 +8,13 @@ export interface IContent {
   original_title: string;
   original_name: string;
   release_date: string;
-  first_air_date: string
+  first_air_date: string;
   popularity: number;
 }
 
 export interface IListResponse {
   page: number;
-  results: [];
+  results: IContent[];
   total_pages: number;
 }
 
@@ -23,17 +25,9 @@ export interface IDetailResponse {
   original_name?: string;
   backdrop_path?: string;
   overview?: string;
-  genres?: [{id: number, name: string}]
-}
-
-export interface IContentList {
-  format: string;
-  content: IListResponse;
-}
-
-export interface ISearchResponse extends IListResponse {
+  genres?: Array<{ id: number; name: string }>;
 }
 
 export interface IHandleChangeFunc {
-  (event: object, value: number): void
+  (event: React.ChangeEvent<unknown>, value: number): void;
 }

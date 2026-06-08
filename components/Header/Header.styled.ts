@@ -8,8 +8,4 @@ export const headerBoxStyle = {
   marginBottom: '30px',
   position: 'sticky',
   top: '-195px',
-
-
 };
-
-

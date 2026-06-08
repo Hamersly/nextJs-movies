@@ -1,7 +1,7 @@
-import {FC} from 'react';
+import { FC } from 'react';
 import Pagination from '@mui/material/Pagination';
-import {IHandleChangeFunc} from '@/types/types';
-import {basePaginationStyle} from './BasePagination.styled';
+import { IHandleChangeFunc } from '@/types/types';
+import { basePaginationStyle } from './BasePagination.styled';
 
 interface IProps {
   page: number;
@@ -9,7 +9,7 @@ interface IProps {
   handleChange: IHandleChangeFunc;
 }
 
-export const BasePagination: FC<IProps> = ({page, total_pages, handleChange}) => {
+export const BasePagination: FC<IProps> = ({ page, total_pages, handleChange }) => {
   return (
     <Pagination
       sx={basePaginationStyle}
@@ -17,6 +17,7 @@ export const BasePagination: FC<IProps> = ({page, total_pages, handleChange}) =>
       count={total_pages > 100 ? 100 : total_pages}
       siblingCount={0}
       page={page}
-      onChange={handleChange}/>
+      onChange={handleChange}
+    />
   );
 };

@@ -1,5 +1,5 @@
 export const cLBoxStyle = {
-  marginBottom: '30px'
+  marginBottom: '30px',
 };
 
 export const contentBoxStyle = {
@@ -11,11 +11,15 @@ export const contentBoxStyle = {
   width: '95%',
 };
 
-export const contentBoxPaginationStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'space-between',
-  height: '100%'
+export const contentItemStyle = {
+  width: '100%',
+  maxWidth: '800px',
+};
+
+export const errorTypographyStyle = {
+  color: '#466FD5',
+  fontWeight: 'bold',
+  textShadow: '10px 12px 15px black',
 };
 
 export const contentTypographyStyle = {

@@ -9,7 +9,14 @@ export const footerBoxStyle = {
 
 export const footerCreatedByBox = {
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
+};
+
+export const footerAvatarStyle = {
+  width: 50,
+  height: 50,
+  marginLeft: 3,
+  boxShadow: '5px 6px 7px 2px rgba(0, 1, 2, 0.50)',
 };
 
 export const footerTypographyStyle = {

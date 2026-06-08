@@ -18,6 +18,4 @@ export const titleTwoStyle = {
   color: '#466FD5',
   textShadow: '10px 12px 15px black',
   fontWeight: 'bold',
-
 };
-
